@@ -1,0 +1,48 @@
+@use "../abstracts" as *;
+
+#visitorHomePage {
+  .carousel-slide-content {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px;
+    background-color: $background-light;
+  }
+  p {
+    margin-bottom: 0;
+  }
+  .slide_left-part {
+    background-color: $background-dark;
+    font-size: 9px;
+    padding: 20px;
+    border-radius: 8px;
+    color: $text-white;
+    text-align: center;
+  }
+
+  .author-image {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    margin-top: -50px;
+  }
+
+  .border {
+    margin-left: 15px;
+
+    border: 1px solid $primary-default !important;
+  }
+
+  .slide_right-part {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    font-size: 9px;
+    padding: 10px;
+    color: $primary-default;
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    filter: invert(50%);
+  }
+}

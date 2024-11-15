@@ -1,0 +1,29 @@
+@use "../abstracts" as *;
+
+#artistHomePage,
+#artistItemsPage {
+  .dropdown-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: $primary-default;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    width: 100%;
+    padding: 0;
+    text-align: center;
+  }
+
+  .dropdown-nav a {
+    color: $background-light;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown-nav a:hover {
+    color: black;
+    background-color: #ddd;
+  }
+}

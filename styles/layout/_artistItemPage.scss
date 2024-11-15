@@ -1,0 +1,100 @@
+@use "../abstracts/" as *;
+#artistItemsPage {
+  min-height: 100vh;
+  background-color: $background-normal;
+  .add-new-item {
+    height: 120px;
+    background-color: $background-light;
+    display: flex;
+    align-items: center;
+    margin: 26px 0;
+    padding: 11px 0;
+    text-decoration: none;
+
+    .add-NI-border {
+      width: 100%;
+      height: 100%;
+      margin: 0 18px;
+      border: 2.5px dashed $primary-default;
+      display: flex;
+      align-items: center;
+
+      p {
+        margin: 0 auto;
+        color: $primary-default;
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 21px;
+      }
+    }
+  }
+  .buttons {
+    background-color: $primary-default;
+    padding: 15px;
+  }
+  .btn-light {
+    background-color: $background-light;
+  }
+  .item-card {
+    color: $primary-default;
+    padding-bottom: 30px;
+  }
+  .titleandprice {
+    display: flex;
+    justify-content: space-between;
+    .btn-light {
+      background-color: $primary-default !important;
+      color: white;
+      outline: none;
+      border: none;
+    }
+  }
+  .card-body {
+    padding: 15px;
+  }
+  .card-date {
+    color: $background-dark;
+  }
+  .confirm-popup {
+    opacity: 0;
+    transition: opacity 20ms ease-in;
+    pointer-events: none;
+    z-index: 12;
+    background-color: $primary-default;
+    width: fit-content;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1rem;
+    border-radius: 5px;
+    p {
+      color: $background-light;
+      margin-bottom: 14px;
+    }
+    .confirm {
+      background-color: $primary-contrast;
+      color: $background-light;
+      margin-left: 7px;
+      transition: all 150ms ease-in-out;
+      &:hover {
+        background-color: gray;
+        transform: scale(1.1);
+      }
+    }
+    .cancel {
+      background-color: $background-light;
+      color: $primary-default;
+      transition: all 100ms ease-in-out;
+      &:hover {
+        background-color: $background-gray;
+        transform: scale(1.1);
+      }
+    }
+  }
+  .confirm-popup.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+}

@@ -1,0 +1,120 @@
+@use "../abstracts" as *;
+#artistHomePage {
+  height: 100%;
+
+  .statistics-section {
+    height: 100%;
+    background-color: $background-normal;
+    display: flex;
+    flex-wrap: wrap;
+
+    .statistics-value {
+      font-weight: 500;
+      font-size: 48px;
+      line-height: 56px;
+      color: $background-light;
+      @include custom-max-400 {
+        font-size: 40px;
+      }
+      @include max-M-phone {
+        font-size: 35px;
+      }
+    }
+
+    .statistics-card {
+      width: 50%;
+      padding-top: 26px;
+    }
+
+    .statistics-card:first-of-type {
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+
+    .statistics-card:nth-of-type(2) {
+      padding-right: 18px;
+    }
+
+    .statistics-content {
+      background-color: $primary-default;
+      text-align: center;
+      padding: 15px;
+      @include max-S-phone {
+        padding: 8px;
+      }
+    }
+
+    .statistics-card:last-of-type {
+      width: 100%;
+      padding: 50px;
+      font-size: 28px;
+
+      .statistics-content {
+        background-color: $primary-contrast;
+        text-align: center;
+        padding: 10px;
+      }
+    }
+
+    p {
+      font-weight: 300;
+      font-size: 18px;
+      line-height: 21px;
+      color: $background-light;
+      @include custom-max-400 {
+        font-size: 15px;
+      }
+    }
+  }
+
+  .income-display {
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+    background-color: $background-light;
+    .income-content {
+      display: flex;
+      flex-direction: column;
+
+      p {
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 21px;
+        color: $primary-default;
+        margin-bottom: 9px;
+      }
+
+      .button-group {
+        display: flex;
+
+        button {
+          width: 100px;
+          background-color: $primary-default;
+          color: $background-light;
+
+          @include custom-max-400 {
+            width: 90px;
+          }
+
+          @include max-M-phone {
+            width: 80px;
+          }
+
+          &.active {
+            background-color: $primary-contrast;
+          }
+        }
+
+        button:nth-child(2) {
+          margin: 0 39px;
+          @include custom-max-400 {
+            margin: 0 18px;
+          }
+          @include max-M-phone {
+            margin: 0 12px;
+          }
+        }
+      }
+    }
+  }
+}
