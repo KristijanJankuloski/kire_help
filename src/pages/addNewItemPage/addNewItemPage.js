@@ -16,19 +16,16 @@ export function initAddNewItemPage(item = null) {
   const selectedArtist = getArtist();
   document.querySelector(".artist-name3").textContent = selectedArtist;
 
-  const title = document.getElementById("new-item_title");
-  const description = document.getElementById("new-item_desc");
-  const type = document.getElementById("new-item_type");
-  const price = parseFloat(document.getElementById("new-item_price"));
-  const imageUrl = document.getElementById("new-item_img-url");
-  const isPublished = document.getElementById("is_published");
+  const titleInput = document.getElementById("new-item_title");
+  const descInput = document.getElementById("new-item_desc");
+  const typeInput = document.getElementById("new-item_type");
+  const priceInput = document.getElementById("new-item_price");
+  const imgInput = document.getElementById("new-item_img-url");
+  const isPublishedInput = document.getElementById("is_published");
   const artist = getArtist();
   const dateCreated = new Date().toISOString();
   ItemTypeDropdown();
-  const draft = getItemDraft();
-  if (draft) {
-    title.value = draft.title;
-  }
+  
   const capturedImage = sessionStorage.getItem("capturedImage");
   if (capturedImage) {
     document.getElementById("new-item_img-url").value = capturedImage;
@@ -43,13 +40,27 @@ export function initAddNewItemPage(item = null) {
     document.getElementById("is_published").checked = item.isPublished;
     document.getElementById("saveItemButton").textContent = "Update Item";
   } else {
-    document.getElementById("new-item_title").value = "";
-    document.getElementById("new-item_desc").value = "";
-    document.getElementById("new-item_type").selectedIndex = 0;
-    document.getElementById("new-item_price").value = "";
-    document.getElementById("new-item_img-url").value = "";
-    document.getElementById("is_published").checked = true;
     document.getElementById("saveItemButton").textContent = "Add New Item";
+
+    const draft = getItemDraft();
+    if (draft) {
+      titleInput.value = draft.title;
+      descInput.value = draft.description;
+      typeInput.selectedIndex = draft.type;
+      priceInput.value = draft.price;
+      imgInput.value = draft.image;
+      isPublishedInput.checked = draft.isPublished;
+
+      itemDraft(null);
+    }
+    else {
+      titleInput.value = "";
+      descInput.value = "";
+      typeInput.selectedIndex = 0;
+      priceInput.value = "";
+      imgInput.value = "";
+      isPublishedInput.checked = true;
+    }
   }
 
   const isPublishedCheckbox = document.getElementById("is_published");
@@ -67,13 +78,15 @@ export function initAddNewItemPage(item = null) {
   document
     .getElementById("saveItemButton")
     .addEventListener("click", () => saveNewItem(item));
-  title.addEventListener("input", function () {
+  // I ova potvorigo za drugite inputs desc, type, price...
+  // *
+  titleInput
+    .addEventListener("change", function () {
     const newItem = {
-      id: 0,
-      title: title.value,
-      description: description.value,
-      type: type.value,
-      price: price.value,
+      title: titleInput.value,
+      description: descInput.value,
+      type: typeInput.value,
+      price: priceInput.value,
       image: sessionStorage.getItem("capturedImage"),
       artist: artist.value,
       dateCreated: null,
@@ -84,6 +97,7 @@ export function initAddNewItemPage(item = null) {
     };
     itemDraft(newItem);
   });
+  // *
   document
     .querySelector(".alert-read-btn")
     .addEventListener("click", function () {
@@ -159,8 +173,12 @@ function saveNewItem() {
     updateItem(updatedItem);
   } else {
     // Add new item
+    // Za da ti ostane istoto ID treba ova za lasItem getItems da go stavis vo addItem funkcijata vo storage.js
+    // Neka bide vo momentot koga ke ke pushne itemot togas da dobie ID inace ne ti treba
+  // *
     const lastItem = getItems().pop();
     const newId = lastItem ? lastItem.id + 1 : 1;
+  // *
     const newItem = {
       id: newId,
       title,
